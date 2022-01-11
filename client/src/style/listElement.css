@@ -1,16 +1,20 @@
 .element {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
-  width: 100%;
+  margin-bottom: 10px;
+  width: 99.7%;
   min-height: 48px;
   height: auto;
-  border: 2px solid #3039447e;
+  border: 2px solid #7186a07e;
   color: #fdfffc;
+}
+.element:hover {
+  background-color: #282e387e;
 }
 .element-index {
   display: flex;
   width: 5%;
+  font-size: 18px;
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;

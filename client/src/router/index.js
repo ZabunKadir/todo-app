@@ -1,4 +1,4 @@
-import Home from "../pages/home";
+import Home from "../pages/home/home";
 import SignIn from "../pages/signIn";
 import SignUp from "../pages/signUp";
 import NotFound from "../components/notFound";

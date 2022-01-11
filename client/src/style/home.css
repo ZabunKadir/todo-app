@@ -16,7 +16,7 @@ body {
   margin-right: auto;
   margin-left: auto;
   margin-top: 5em;
-  border-radius: 100px;
+  border-radius: 10px;
   background: rgb(63, 94, 251);
   background: linear-gradient(
     90deg,
@@ -47,9 +47,10 @@ body {
 .header-links-item {
   display: flex;
   color: #fdfffc;
-  padding: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  justify-content: center;
+  width: 96px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -75,6 +76,25 @@ a {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+.content-controls {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: row;
+  width: 100%;
+}
+.content-controls-item {
+  height: 2rem;
+  font-size: 16px;
+  background-color: #6369d1;
+  border: none;
+  border-right: 2px solid #fdfffc;
+  width: calc(100% / 3);
+  color: #fdfffc;
+  transition: 500ms;
+}
+.content-controls-item:hover {
+  border: 1px solid #fdfffc;
 }
 .content-buttons-input {
   height: 44px;
@@ -123,4 +143,7 @@ a {
   display: flex;
   margin-top: auto;
   margin-bottom: auto;
+}
+.active {
+  background-color: rgb(230, 63, 96);
 }

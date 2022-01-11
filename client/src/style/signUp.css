@@ -46,6 +46,12 @@ form {
   margin-bottom: 10px;
   border-radius: 10px;
   font-size: 16px;
+  background-color: #96a0ac81;
+  color: #fdfffc;
+}
+.signUp-form-inputs-item::placeholder {
+  padding: 10px;
+  color: #fdfffc;
 }
 .signUp-form-buttons {
   display: flex;
@@ -68,7 +74,7 @@ form {
   border: none;
   color: #191e24;
   font-weight: bold;
-  background-color: #7692ff;
+  background-color: rgb(230, 63, 96);
   transition: 500ms;
 }
 .link {
@@ -76,7 +82,7 @@ form {
 }
 .login:hover {
   border-color: #fdfffc;
-  background-color: rgb(230, 63, 96);
+  background-color: #7692ff;
 }
 .link:hover {
   color: #ff9f1c;

@@ -46,6 +46,11 @@ form {
   margin-bottom: 10px;
   border-radius: 10px;
   font-size: 16px;
+  background-color: #96a0ac81;
+}
+.signIn-form-inputs-item::placeholder {
+  padding: 10px;
+  color: #fdfffc;
 }
 .signIn-form-buttons {
   display: flex;

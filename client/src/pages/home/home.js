@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import ListElement from "../../components/listElement";
+import HomeHooks from "./hooks/homeHooks";
 
-import ListElement from "../components/listElement";
-
-import "../style/home.css";
+import "../../style/home.css";
 
 const Home = () => {
+  const [listType, setListType] = useState("list");
+  const {} = HomeHooks();
   return (
     <div className="home">
       <div className="header">
@@ -32,6 +35,40 @@ const Home = () => {
             className="content-buttons-input"
           />
           <button className="content-buttons-button">Add</button>
+        </div>
+        <div className="content-controls">
+          <button
+            className={
+              listType === "list"
+                ? "content-controls-item active"
+                : "content-controls-item"
+            }
+            onClick={() => setListType("list")}
+          >
+            List
+          </button>
+
+          <button
+            className={
+              listType === "completed"
+                ? "content-controls-item active"
+                : "content-controls-item"
+            }
+            onClick={() => setListType("completed")}
+          >
+            Completed
+          </button>
+
+          <button
+            className={
+              listType === "deleted"
+                ? "content-controls-item active"
+                : "content-controls-item"
+            }
+            onClick={() => setListType("deleted")}
+          >
+            Deleted
+          </button>
         </div>
         <div className="content-list">
           {true ? (
