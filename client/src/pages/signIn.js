@@ -10,7 +10,7 @@ const initialState = { email: "", password: "" };
 
 const SignIn = () => {
   const [formData, setFormData] = useState(initialState);
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, setCookie] = useCookies(null);
 
   const navigate = useNavigate();
 
@@ -20,8 +20,12 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { res } = await axios.post("/users/signIn", formData);
-      setCookie("user", res.user, { expires: 60 });
+      const res = await axios.post(
+        "http://localhost:5000/users/login",
+        formData
+      );
+
+      setCookie("user", res.data);
       navigate("/");
     } catch (error) {
       console.log(error);

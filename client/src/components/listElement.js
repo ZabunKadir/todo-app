@@ -1,5 +1,7 @@
 import "../style/listElement.css";
 
+import moment from "moment";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck, faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 const ListElement = ({ index, content }) => {
@@ -12,7 +14,13 @@ const ListElement = ({ index, content }) => {
       >
         {index}
       </span>
-      <div className="element-content">Deneme yazisi girildi</div>
+      <div className="element-content">
+        <div className="element-content-text">{content?.context}</div>
+        <div className="element-content-time">
+          <label style={{ color: " gray " }}>Created At:</label>
+          {moment(content?.createdAt).format("M.D.YYYY - h:mm a")}
+        </div>
+      </div>
       <div className="element-buttons">
         <button className="element-buttons-item item-remove">
           <FontAwesomeIcon

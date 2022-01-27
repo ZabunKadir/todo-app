@@ -7,10 +7,10 @@ import axios from "axios";
 import "../style/signUp.css";
 
 const initialState = { name: "", surname: "", email: "", password: "" };
-
 const SignUp = () => {
   const [formData, setFormData] = useState(initialState);
-  const [cookies, setCookie] = useCookies(["user"]);
+  const [cookies, setCookie] = useCookies(null);
+
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,8 +18,11 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { res } = await axios.post("/users/signUp", formData);
-      setCookie("user", res.user, { expires: 60 });
+      const res = await axios.post(
+        "http://localhost:5000/users/register",
+        formData
+      );
+      setCookie("user", res.data);
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -12,7 +12,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   width: 60%;
-  height: 80px;
+  height: 108px;
   margin-right: auto;
   margin-left: auto;
   margin-top: 5em;
@@ -37,12 +37,47 @@ body {
 }
 .header-links {
   display: flex;
-
   font-size: 18px;
   width: 30%;
   justify-content: space-around;
   margin-top: auto;
   margin-bottom: auto;
+}
+.header-login {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  justify-content: center;
+  color: #fdfffc;
+  font-size: 18px;
+}
+.header-login-text {
+  display: flex;
+  height: 50%;
+}
+.header-login-div {
+  display: flex;
+  height: 50%;
+  justify-content: center;
+}
+.header-login-span {
+  display: flex;
+  line-height: 80px;
+}
+.header-login-button {
+  display: flex;
+  margin-left: 120px;
+  margin-top: 10px;
+  height: 36px;
+  width: 36px;
+  border-color: #6369d1;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.header-login-icon {
+  margin: auto auto;
+  font-size: 18px;
+  color: #6369d1;
 }
 .header-links-item {
   display: flex;

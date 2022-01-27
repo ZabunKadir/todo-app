@@ -18,7 +18,7 @@
   justify-content: center;
   margin-top: auto;
   margin-bottom: auto;
-  line-height: 32px;
+  line-height: 42px;
   border-right: 2px solid #7692ff;
 }
 .index-even {
@@ -26,14 +26,25 @@
 }
 .element-content {
   display: flex;
+  flex-direction: column;
   width: 75%;
-  font-size: 20px;
   margin-left: 10px;
   justify-content: flex-start;
   margin-top: auto;
   margin-bottom: auto;
-  line-height: 48px;
+
   border-right: 2px solid #7692ff;
+}
+.element-content-text {
+  font-size: 20px;
+  line-height: 32px;
+  margin-top: 5px;
+}
+.element-content-time {
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+  color: rgb(207, 207, 207);
 }
 .element-buttons {
   display: flex;
