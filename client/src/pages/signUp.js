@@ -1,16 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useCookies } from "react-cookie";
+
+import ErrorCard from "../components/errorCard";
+
 import axios from "axios";
 
 import "../style/signUp.css";
 
 const initialState = { name: "", surname: "", email: "", password: "" };
+
 const SignUp = () => {
   const [formData, setFormData] = useState(initialState);
   const [cookies, setCookie] = useCookies(null);
-
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -25,6 +30,7 @@ const SignUp = () => {
       setCookie("user", res.data);
       navigate("/");
     } catch (error) {
+      setErr(error.response.data.error);
       console.log(error);
     }
   };
@@ -34,6 +40,7 @@ const SignUp = () => {
       <div className="signUp-form">
         <form onSubmit={handleSubmit}>
           <span className="signUp-form-title">REGISTER</span>
+          {err ? <ErrorCard errorValue={err} active={true} /> : null}
           <div className="signUp-form-inputs">
             <input
               className="signUp-form-inputs-item"

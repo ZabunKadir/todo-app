@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"todo-list/controllers"
 
 	"github.com/gin-contrib/cors"
@@ -15,8 +16,11 @@ func main() {
 	router.POST("/users/register", controllers.Register)
 	router.POST("/users/login", controllers.Login)
 
-	router.POST("/todos/addTodo", controllers.AddTodo)
-	//router.GET("/todos", controllers.GetTodos)
+	router.POST("/todos/add_todo", controllers.AddTodo)
+	router.POST("/todos/:id/todo_actions", controllers.TodoActions)
 
-	router.Run(":5000")
+	err := router.Run(":5000")
+	if err != nil {
+		fmt.Println("Error:", err)
+	}
 }

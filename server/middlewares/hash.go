@@ -6,7 +6,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-func NewHash(password string, cost int) string {
+func CreateHash(password string, cost int) string {
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), cost)
 	if err != nil {
 		fmt.Println("Hash Error:", err)

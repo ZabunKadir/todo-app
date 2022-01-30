@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"os"
 	"time"
 	"todo-list/db"
 	"todo-list/middlewares"
@@ -15,7 +16,7 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-var UserCollection *mongo.Collection = db.OpenCollection(db.Client, "users")
+var UserCollection *mongo.Collection = db.OpenCollection(db.Client, os.Getenv("UserCollectionName"))
 
 func Register(c *gin.Context) {
 	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
@@ -45,12 +46,11 @@ func Register(c *gin.Context) {
 		fmt.Println("Token Not Created!")
 	}
 	user.Token = token
-	user.Password = middlewares.NewHash(user.Password, 13)
+	user.Password = middlewares.CreateHash(user.Password, 13)
 
 	_, insertErr := UserCollection.InsertOne(ctx, user)
 	if insertErr != nil {
-		msg := fmt.Sprintf("User Was Not Created")
-		c.JSON(http.StatusInternalServerError, gin.H{"error": msg})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User Was Not Created"})
 		return
 	}
 	c.JSON(http.StatusOK, user)
@@ -59,25 +59,32 @@ func Register(c *gin.Context) {
 func Login(c *gin.Context) {
 	var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 	defer cancel()
-	var user models.User
-	if err := c.BindJSON(&user); err != nil {
+	var userRequest models.LoginRequest
+	if err := c.BindJSON(&userRequest); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	if len(user.Email) == 0 || len(user.Password) == 0 {
+	if len(userRequest.Email) == 0 || len(userRequest.Password) == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Please Fill All Fields!"})
 		return
 	}
-	fmt.Println(user)
-	userExist := UserCollection.FindOne(ctx, bson.M{"email": user.Email})
+	var user models.User
+	userExist := UserCollection.FindOne(ctx, bson.M{"email": userRequest.Email})
 	if err := userExist.Decode(&user); err != nil {
 		fmt.Println(err)
 		c.JSON(http.StatusBadRequest, gin.H{"error": "User Not Exist!"})
 		return
 	}
 
-	c.JSON(http.StatusOK, user)
-	//passwordControl,err := middlewares.ComparePassword(userExist.password,user.Password)
-
+	passwordControl, err := middlewares.ComparePassword(user.Password, userRequest.Password)
+	if err != nil {
+		fmt.Println(err)
+	}
+	if passwordControl {
+		c.JSON(http.StatusOK, user)
+	} else {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Email Or Password Not Correct!"})
+		return
+	}
 }

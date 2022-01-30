@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
+
 import { useState } from "react";
+
 import ListElement from "../../components/listElement";
+
 import HomeHooks from "./hooks/homeHooks";
 
 import "../../style/home.css";
+
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 const Home = () => {
   const [listType, setListType] = useState("All");
-  const [inputValue, setInputValue] = useState("");
   const {
     isLogin,
     user,
@@ -74,6 +78,7 @@ const Home = () => {
             onClick={(e) => {
               addTodo(e, user?.ID, user?.token, todoContext);
               document.getElementById("content").value = "";
+              setListType("All");
             }}
           >
             Add
@@ -94,7 +99,19 @@ const Home = () => {
           >
             All
           </button>
-
+          <button
+            className={
+              listType === "Todos"
+                ? "content-controls-item active"
+                : "content-controls-item"
+            }
+            onClick={(e) => {
+              setListType("Todos");
+              listControl(user?.todo, "Normal");
+            }}
+          >
+            Todos
+          </button>
           <button
             className={
               listType === "Completed"
@@ -126,11 +143,7 @@ const Home = () => {
         <div className="content-list">
           {isLogin ? (
             displayTodo?.map((item, index) => (
-              <ListElement
-                key={index}
-                index={index + 1}
-                content={item}
-              ></ListElement>
+              <ListElement key={index} index={index + 1} content={item} />
             ))
           ) : (
             <div className="content-list-no">

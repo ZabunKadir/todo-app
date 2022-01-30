@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useCookies } from "react-cookie";
+
+import ErrorCard from "../components/errorCard";
+
 import axios from "axios";
 
 import "../style/signIn.css";
@@ -11,7 +15,7 @@ const initialState = { email: "", password: "" };
 const SignIn = () => {
   const [formData, setFormData] = useState(initialState);
   const [cookies, setCookie] = useCookies(null);
-
+  const [err, setErr] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,15 +23,16 @@ const SignIn = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await axios.post(
         "http://localhost:5000/users/login",
         formData
       );
-
       setCookie("user", res.data);
       navigate("/");
     } catch (error) {
+      setErr(error.response.data.error);
       console.log(error);
     }
   };
@@ -36,6 +41,7 @@ const SignIn = () => {
       <div className="signIn-form">
         <form onSubmit={handleSubmit}>
           <span className="signIn-form-title">LOGIN</span>
+          {err ? <ErrorCard errorValue={err} active={true} /> : null}
           <div className="signIn-form-inputs">
             <input
               className="signIn-form-inputs-item"

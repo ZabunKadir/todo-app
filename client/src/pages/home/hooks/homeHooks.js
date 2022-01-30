@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 import { useCookies } from "react-cookie";
 
 import axios from "axios";
@@ -39,11 +40,31 @@ const HomeHooks = () => {
 
     if (userId && token && isLogin) {
       try {
-        const res = await axios.post("http://localhost:5000/todos/addTodo", {
+        const res = await axios.post("http://localhost:5000/todos/add_todo", {
           userId,
           token,
           context,
         });
+        setCookie("user", res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+  const todoActions = async (e, userId, token, todoId, actionType, context) => {
+    e.preventDefault();
+    if (userId && token && isLogin) {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/todos/:id/todo_actions",
+          {
+            userId,
+            token,
+            todoId,
+            actionType,
+            context,
+          }
+        );
         setCookie("user", res.data);
       } catch (error) {
         console.log(error);
@@ -70,6 +91,7 @@ const HomeHooks = () => {
     todoContext,
     listControl,
     displayTodo,
+    todoActions,
   };
 };
 export default HomeHooks;

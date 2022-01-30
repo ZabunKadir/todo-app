@@ -3,6 +3,7 @@
   justify-content: center;
   width: 100%;
   height: 100vh;
+  position: relative;
 }
 form {
   display: flex;
@@ -35,7 +36,8 @@ form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 50px;
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 .signUp-form-inputs-item {
   display: flex;
@@ -57,7 +59,7 @@ form {
   display: flex;
   width: 100%;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .signUp-form-buttons-item {
   display: flex;
@@ -67,7 +69,7 @@ form {
   line-height: 32px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 20px;
 }
 .login {

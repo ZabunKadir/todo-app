@@ -40,6 +40,47 @@
   line-height: 32px;
   margin-top: 5px;
 }
+.element-content-text-completed {
+  font-size: 20px;
+  color: #0ead69;
+  line-height: 32px;
+  margin-top: 5px;
+}
+.element-content-text-deleted {
+  font-size: 20px;
+  color: #ed1c24;
+  text-decoration: line-through;
+  line-height: 32px;
+  margin-top: 5px;
+}
+.element-content-text-input {
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  height: 32px;
+  border-color: #7692ff;
+  background-color: #7691ff00;
+  color: rgba(252, 70, 107, 1);
+  border-width: 1px;
+}
+.element-content-text-button {
+  width: 34px;
+  height: 34px;
+  line-height: 33px;
+  margin-right: 2px;
+  cursor: pointer;
+  background-color: rgb(180, 180, 180);
+  border-radius: 5px;
+}
+.element-content-text-check {
+  font-size: 17px;
+  color: #0ead69;
+}
+.element-content-text-cancel {
+  font-size: 17px;
+  color: #ed1c24;
+}
 .element-content-time {
   display: flex;
   flex-direction: row;
