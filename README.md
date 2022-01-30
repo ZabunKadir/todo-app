@@ -19,7 +19,7 @@
 
 ## About The Project
 
-![Home Page](https://github.com/ZabunKadir/todo-app/tree/main/screenShot/homePage.png)
+![Home Page](https://github.com/ZabunKadir/todo-app/blob/main/screenShot/homePage.PNG)
 
 My aim to develop this application is to learn go language and make it a complete application with its basics.While developing the application, I used React.js for frontend and gin framework of go language for backend.
 
@@ -56,5 +56,5 @@ Project Link: [Todo App](https://github.com/ZabunKadir/todo-app)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-![Login](https://github.com/ZabunKadir/todo-app/tree/main/screenShot/login.png)
-![Register](https://github.com/ZabunKadir/todo-app/tree/main/screenShot/register.png)
+![Login](https://github.com/ZabunKadir/todo-app/blob/main/screenShot/login.PNG)
+![Register](https://github.com/ZabunKadir/todo-app/blob/main/screenShot/register.PNG)
